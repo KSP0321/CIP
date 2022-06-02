@@ -358,8 +358,8 @@ Kakao.API.request({
 
 
             <!-- 컨테이너 -->
-          
-            <div id="info" class="info">
+         
+        <div id="info" class="info">
             <div class="d-infobar" id="infobar">
                 <div class="info_header">
                     <ion-icon name="close-outline" class="info__toggle" id="infobtn" onclick="showinfo()"></ion-icon>
@@ -437,11 +437,11 @@ Kakao.API.request({
                             </div>
                         </section>
                     </div>
-			</div>
-		    </div>
-		    </div>
-	</div>
-
+                </div>
+            </div>
+        </div>
+        
+    </div>
     <!-- IONICONS -->
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
