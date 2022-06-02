@@ -350,7 +350,7 @@ Kakao.API.request({
                     el.removeChild (el.lastChild);
                 }
             }
-			
+         
             
 
 
@@ -358,7 +358,7 @@ Kakao.API.request({
 
 
             <!-- 컨테이너 -->
-         
+          
         <div id="info" class="info">
             <div class="d-infobar" id="infobar">
                 <div class="info_header">
@@ -442,14 +442,16 @@ Kakao.API.request({
         </div>
         
     </div>
+
     <!-- IONICONS -->
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- JS -->
     <script src="js/main.js"></script>
-
 <script>
+
+
 // /* EXPANDER MENU */
 // const showMenu = (navbarId, toggleId) => {
 //     const navbar = document.getElementById(navbarId),
@@ -461,7 +463,8 @@ Kakao.API.request({
 //     }
 // }
 // showMenu('navbar', 'nav-toggle')
-// showMenu('navbar', 'nav-close')   
+// showMenu('navbar', 'nav-close')
+    
  function showinfo(idx){
     
     //ajax 
