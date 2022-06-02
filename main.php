@@ -54,11 +54,11 @@
   url: '/v1/user/unlink',
   success: function(response) {
     console.log(response);
-    location.href="http://ciptest.ga/index.html";
+    location.href="http://carmerainpark.ga/index.html";
   },
   fail: function(error) {
     console.log(error);
-    location.href="http://ciptest.ga/index.html";
+    location.href="http://carmerainpark.ga/index.html";
   },
 });
             //     if (!Kakao.Auth.getAccessToken()) {
@@ -69,7 +69,7 @@
             //     console.log(Kakao.Auth.getAccessToken());
             //     success:res=>{
             //         Kakao.Auth.authorize({
-            //         redirectUri: 'http://ciptest.ga'
+            //         redirectUri: 'http://carmerainpark.ga'
             //  });}
             //     });
             }
