@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -5,6 +6,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style__.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
     <title>CIP</title>
 </head>
@@ -17,6 +19,7 @@
         <div class="l-navbar" id="navbar">
     
             <nav class="nav"> 
+            <ion-icon name="close-circle-outline" class="nav__toggle" id="nav-toggle_2"></ion-icon>
                 <div class="map_wrap">
                     <div id="menu_wrap" class="menu_wrap">
                         <div class="popup">
@@ -37,19 +40,59 @@
                         <hr>    
                     </div>
                 </div>
-                <a href="#" class="nav__link">
+                
+                <a href="javascript:KakaoLogout();" class="nav__link">
                     <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
                     <span class="nav_name">Log out</span>
                 </a>
-            </nav>
-        </div>
+                <script src="https://developers.kakao.com/sdk/js/kakao.js"> </script>
+                <script type="text/javascript">
+        Kakao.init('b054f0394862c8459139f0801d100ae3');
+            Kakao.isInitialized();
+      function KakaoLogout(){
+        Kakao.API.request({
+  url: '/v1/user/unlink',
+  success: function(response) {
+    console.log(response);
+    location.href="http://ciptest.ga/index.html";
+  },
+  fail: function(error) {
+    console.log(error);
+    location.href="http://ciptest.ga/index.html";
+  },
+});
+            //     if (!Kakao.Auth.getAccessToken()) {
+            //         console.log('Not logged in.');
+            //         return;
+            //         }
+            //     Kakao.Auth.logout(function() {
+            //     console.log(Kakao.Auth.getAccessToken());
+            //     success:res=>{
+            //         Kakao.Auth.authorize({
+            //         redirectUri: 'http://ciptest.ga'
+            //  });}
+            //     });
+            }
+            
+Kakao.API.request({
+  url: '/v1/user/unlink',
+  success: function(response) {
+    console.log(response);
+  },
+  fail: function(error) {
+    console.log(error);
+  },
+});
+       </script>
+//             </nav>
+//         </div>
 
         
 
             <div id="map" class="map" style="width:100%;height:100%;"></div>
-            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=08636b5f561bb94d433cd3817ac752d6&libraries=services"></script>
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3911680ceb2853064dd77af72246f542&libraries=services"></script>
             <script>
-
+                
                 var mapContainer = document.getElementById('map'), // 지도의 중심좌표
                     mapOption = {
                         center: new kakao.maps.LatLng(37.452053, 127.131652), // 지도의 중심좌표
@@ -95,26 +138,28 @@
                     ?>
                     
                     {
-                        
+                        content: '<div class="bubble" onclick="showinfo(<?php echo $row["PARKING_ID"];?>)" id="bubble"><span class="content"><?php echo $row["PARKING_NUMBER"]?></span></div>',
                         latlng: new kakao.maps.LatLng(<?php echo $row["PARKING_LAT"]; ?>, <?php echo $row["PARKING_LNG"]; ?>)
                     },
+                    
                     <?php
                             }
-                        
-                    ?> 
+                     ?> 
 
                     
                 ];
+                
+                
                
-                var content = '<div class="bubble" onclick="showinfo()" id="bubble"><span class="content"><?php echo "3";?></span></div>';
                 
 
                 for (var i=0; i<positions.length; i++){
                     var customOverlay = new kakao.maps.CustomOverlay({
                         position: positions[i].latlng,
-                        content : content
+                        content : positions[i].content
                     });
                     customOverlay.setMap(map);
+                    
                 }
 
                 // 장소 검색 객체를 생성합니다
@@ -313,32 +358,33 @@
 
 
             <!-- 컨테이너 -->
-            
-        <div id="info" class="info">
+          
+            <div id="info" class="info">
             <div class="d-infobar" id="infobar">
                 <div class="info_header">
                     <ion-icon name="close-outline" class="info__toggle" id="infobtn" onclick="showinfo()"></ion-icon>
-                    <h3 class="p_name" name="parking_name">가천대학교 AI 공학관</h3>
+                    <h3 class="p_name" name="parking_name"></h3>
                 </div>
                 <div class="info_wrap">
                     <div class="info_content">
                         <div>
                             <span>공석 개수</span>
-                            <span class="count" name="parking_number">3</span>
+                            <span class="count" name="parking_number"></span>
                         </div>
                         <div>
                             <ion-icon name="location-outline"></ion-icon>
-                            <span class="p_address" name="parking_address" >경기 성남시 수정구 복정동 495</span>
+                            <span class="p_address" name="parking_address" ></span>
                         </div>
                         <div>
                             <ion-icon name="call-outline"></ion-icon>
-                            <span class="p_phone" name="parking_phone">031-750-5114</span>
+                            <span class="p_phone" name="parking_phone"></span>
                         </div>
                         <div>
                             <ion-icon name="alarm-outline"></ion-icon>
-                            <span class="p_time" name="parking_runtime">9:00~23:00</span>
+                            <span class="p_time" name="parking_runtime"></span>
                         </div>
                     </div>
+                    <hr>
                     <div class="community">
                         <section class="mb-5">
                             <div class="card bg-light">
@@ -385,16 +431,12 @@
                                                 <p class="date" name="date">2022.05.26 21:06</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
+                                   
                                 </div>
                             </div>
                         </section>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
 
     <!-- IONICONS -->
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
@@ -402,60 +444,90 @@
 
     <!-- JS -->
     <script src="js/main.js"></script>
-<script>
-/* EXPANDER MENU */
-const showMenu = (navbarId, toggleId) => {
-    const navbar = document.getElementById(navbarId),
-          toggle = document.getElementById(toggleId)
-    if( toggle && navbar ) {
-        toggle.addEventListener('click', ()=>{
-            navbar.classList.toggle('expander');
-        })
-    }
-}
-showMenu('navbar', 'nav-toggle')
-showMenu('navbar', 'nav-close')
 
-function showinfo(){
+<script>
+// /* EXPANDER MENU */
+// const showMenu = (navbarId, toggleId) => {
+//     const navbar = document.getElementById(navbarId),
+//           toggle = document.getElementById(toggleId)
+//     if( toggle && navbar ) {
+//         toggle.addEventListener('click', ()=>{
+//             navbar.classList.toggle('expander');
+//         })
+//     }
+// }
+// showMenu('navbar', 'nav-toggle')
+// showMenu('navbar', 'nav-close')   
+ function showinfo(idx){
+    
+    //ajax 
+    $.ajax({
+
+        type : 'GET',
+
+        url : 'selectone.php',
+
+        data : {index: idx},
+
+        error : function(){
+
+           
+
+        },
+
+        success : function(result){
+            var resultParse = JSON.parse(result);
+            document.querySelector("#infobar > div.info_header > h3").innerHTML = resultParse[0].name;
+            document.querySelector("#infobar > div.info_wrap > div.info_content > div:nth-child(1) > span.count").innerHTML = resultParse[0].number;
+            document.querySelector("#infobar > div.info_wrap > div.info_content > div:nth-child(2) > span").innerHTML = resultParse[0].address;
+            document.querySelector("#infobar > div.info_wrap > div.info_content > div:nth-child(3) > span").innerHTML = resultParse[0].phone;
+            document.querySelector("#infobar > div.info_wrap > div.info_content > div:nth-child(4) > span").innerHTML = resultParse[0].runtime;
+            
+
+        }
+
+        });
+
+
     const info = document.getElementById('info');
     info.classList.toggle('info_visible');
     info.classList.toggle('info');
-}
-
-function showpopup(){
-    const menu_wrap = document.getElementById('menu_wrap');
-    const search = document.getElementById('menu');
-    const info = document.getElementById('info');
-    menu_wrap.classList.toggle('menu_wrap');
-    menu_wrap.classList.toggle('menu-wrap-visible');
-    search.classList.toggle('menu');
-    search.classList.toggle('menu_visible');
-}
-
-/* LINK ACTIVE */
-const linkColor = document.querySelectorAll('.nav__link')
-function colorLink() {
-    linkColor.forEach(l=> l.classList.remove('active'))
-    this.classList.add('active')
-}
-linkColor.forEach(l=> l.addEventListener('click', colorLink))
-
-/* COLLAPSE MENU */
-const linkCollapse = document.getElementsByClassName('collapse__link')
-var i
-
-for(i=0;i<linkCollapse.length;i++) {
-    linkCollapse[i].addEventListener('click', function(){
-        const collapseMenu = this.nextElementSibling
-        collapseMenu.classList.toggle('showCollapse')
-
-        const rotate = collapseMenu.previousElementSibling
-        rotate.classList.toggle('rotate')
-    });
-}
+    
 
     
-    
+    }
+// function showpopup(){
+//     const menu_wrap = document.getElementById('menu_wrap');
+//     const search = document.getElementById('menu');
+//     const info = document.getElementById('info');
+//     menu_wrap.classList.toggle('menu_wrap');
+//     menu_wrap.classList.toggle('menu-wrap-visible');
+//     search.classList.toggle('menu');
+//     search.classList.toggle('menu_visible');
+// }
+
+// /* LINK ACTIVE */
+// const linkColor = document.querySelectorAll('.nav__link')
+// function colorLink() {
+//     linkColor.forEach(l=> l.classList.remove('active'))
+//     this.classList.add('active')
+// }
+// linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+// /* COLLAPSE MENU */
+// const linkCollapse = document.getElementsByClassName('collapse__link')
+// var i
+
+// for(i=0;i<linkCollapse.length;i++) {
+//     linkCollapse[i].addEventListener('click', function(){
+//         const collapseMenu = this.nextElementSibling
+//         collapseMenu.classList.toggle('showCollapse')
+
+//         const rotate = collapseMenu.previousElementSibling
+//         rotate.classList.toggle('rotate')
+//     });
+// }
+
 </script>
 
 </body>
