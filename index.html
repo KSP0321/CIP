@@ -104,12 +104,9 @@
                                             const kakao_account =res.kakao_account;
                                             console.log(kakao_account);
                                             console.log(profile_nickname);
-                                            //location.href="/main.php";
+                                            location.href="/main.php";
                                         }
                                     });
-                                    Kakao.Auth.authorize({
-                                             redirectUri: 'http://ciptest.ga/main.php'
-                                         });
                                   },
                                   fail: function(err) {
                                   }
